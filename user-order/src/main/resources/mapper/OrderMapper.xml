@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xp.shop.dao.OrderDao">
+    <resultMap id="orderMap" type="com.xp.shop.pojo.Order">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="no" property="no"/>
+        <result column="money" property="money"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+    <insert id="add" parameterType="com.xp.shop.pojo.Order">
+        insert into tb_order values(null,#{name},#{no},#{money},#{userId});
+    </insert>
+</mapper>

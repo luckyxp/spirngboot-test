@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<input id="name" type="text"/> <input id="submit" type="button" value="查询">
+<table id="tbl" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>#</th>
+        <th>姓名</th>
+        <th>手机</th>
+        <th>操作</th>
+    </tr>
+</table>
+<script>
+    $(function () {
+        $("#submit").click(function () {
+            $("#tbl").empty();
+            $.ajax({
+                url: '/user/'+$("#name").val(),
+                type: 'get',
+                success:function (users) {
+                    for(const index in users){
+                        const user = users[index];
+                        const $row = $("<tr></tr>");
+                        $row.append($("<td>"+user.id+"</td>"));
+                        $row.append($("<td>"+user.name+"</td>"));
+                        $row.append($("<td>"+user.phone+"</td>"));
+                        $row.append($("<a href='#/"+user.id+"'>删除</a></td>"));
+                        $("#tbl").append($row);
+                    }
+                }
+            })
+        })
+        $.ajax({
+            url: '/user',
+            type: 'get',
+            success:function (users) {
+                for(const index in users){
+                    const user = users[index];
+                    const $row = $("<tr></tr>");
+                    $row.append($("<td>"+user.id+"</td>"));
+                    $row.append($("<td>"+user.name+"</td>"));
+                    $row.append($("<td>"+user.phone+"</td>"));
+                    $row.append($("<a href='#/"+user.id+"'>删除</a></td>"));
+                    $("#tbl").append($row);
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

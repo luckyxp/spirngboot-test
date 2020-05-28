@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    用户名: <input id="userName" type="text"/><br/>
+    产品名: <input id="productName" type="text"/><br/>
+    产品编号: <input id="productNo" type="text"/><br/>
+    产品价格: <input id="money" type="text"/><br/>
+    <input id="submit" type="button" value="添加"/>
+</div>
+<script>
+    $(function () {
+        $("#submit").click(function () {
+            $.ajax({
+                url: '/user/' + $("#userName").val(),
+                type: 'get',
+                success: function (e) {
+                    if (e.length < 1) {
+                        let isNew = confirm("查无此人,是否要添加");
+                        if (isNew) window.open("#")
+                    } else if (e.length > 1) alert("请输入准确的名字");
+                    else {
+                        const orderResult = {
+                            "message": "add.html来的一个订单",
+                            "userName": $("#userName").val(),
+                            "order": {
+                                "money": $("#money").val(),
+                                "name": $("#productName").val(),
+                                "no": $("#productNo").val()
+                            }
+                        };
+                        $.ajax({
+                            url: 'order',
+                            type: 'put',
+                            dataType: 'json',
+                            contentType: 'application/json;charset: utf-8',
+                            data: JSON.stringify(orderResult),
+                            success : function (e) {
+                                console.log(e)
+                            }
+                        })
+                    }
+                }
+            })
+            return false;
+        })
+    })
+</script>
+</body>
+</html>

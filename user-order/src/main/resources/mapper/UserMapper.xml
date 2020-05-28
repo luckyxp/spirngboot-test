@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xp.shop.dao.UserDao">
+    <resultMap id="userMap" type="com.xp.shop.pojo.User">
+        <id column="uid" property="id"/>
+        <result column="uname" property="name"/>
+        <result column="uphone" property="phone"/>
+        <collection property="orders" column="id" ofType="com.xp.shop.pojo.Order"
+                    resultMap="orderMap"/>
+    </resultMap>
+    <resultMap id="orderMap" type="com.xp.shop.pojo.Order">
+        <id column="oid" property="id"/>
+        <result column="oname" property="name"/>
+        <result column="ono" property="no"/>
+        <result column="omoney" property="money"/>
+        <result column="ouserid" property="userId"/>
+    </resultMap>
+    <select id="getByName" parameterType="java.lang.String" resultMap="userMap">
+        select u.id as uid,
+               u.name as uname,
+               u.phone as uphone,
+               o.id as oid,
+               o.name as oname,
+               o.no as ono,
+               o.money as omoney,
+               o.user_id as ouserid
+               from tb_user as u left join tb_order as o on u.id = o.user_id
+        <where>
+            <if test="name!=null and name!=''">
+                and u.name like  concat('%',#{name},'%');
+            </if>
+        </where>
+    </select>
+</mapper>
