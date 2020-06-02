@@ -31,4 +31,10 @@
             </if>
         </where>
     </select>
+    <insert id="add" parameterType="com.xp.shop.pojo.User">
+        insert into tb_user values(null,#{name},#{phone});
+    </insert>
+    <delete id="del" parameterType="java.lang.Integer">
+        delete from tb_user where id = #{id};
+    </delete>
 </mapper>

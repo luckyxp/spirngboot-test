@@ -10,6 +10,7 @@
     <modules>
         <module>user-order</module>
         <module>comsumer80</module>
+        <module>user-order-ssm</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -66,6 +67,11 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.68</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

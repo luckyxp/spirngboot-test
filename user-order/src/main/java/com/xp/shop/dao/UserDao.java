@@ -13,4 +13,8 @@ import java.util.List;
 @Mapper
 public interface UserDao {
     List<User> getByName(@Param("name") String name);
+
+    void add(User user);
+
+    void del(Integer id);
 }

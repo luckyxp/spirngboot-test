@@ -18,7 +18,7 @@
 <script>
     $(function () {
         $("#submit").click(function () {
-            $("#tbl").empty();
+            $("#tbl tr:not(:first)").empty();
             $.ajax({
                 url: '/user/'+$("#name").val(),
                 type: 'get',
@@ -36,7 +36,7 @@
             })
         })
         $.ajax({
-            url: '/user',
+            url: '/users',
             type: 'get',
             success:function (users) {
                 for(const index in users){

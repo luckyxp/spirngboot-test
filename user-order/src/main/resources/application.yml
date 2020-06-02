@@ -8,7 +8,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     username: root
     password: root
-    url: jdbc:mysql://localhost:3306/boot?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://wxp520.top:3306/boot?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
 mybatis:
   mapper-locations:
